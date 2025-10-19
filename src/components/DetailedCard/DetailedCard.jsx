@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import styles from './DetailedCard.module.css';
+import QuantityField from '../QuantityField/QuantityField';
+import { useState } from 'react';
 
 function DetailedCard(props) {
   const [quantity, setQuantity] = useState(1);
@@ -15,8 +16,6 @@ function DetailedCard(props) {
       props.setDetailedView(null);
     }
   };
-
-  const handleSubmit = () => {};
 
   return (
     <dialog
@@ -40,6 +39,12 @@ function DetailedCard(props) {
           <span className={styles.price}>{props.product.price}</span>
         </div>
         <div className={styles.actions}>
+          <QuantityField
+            productId={props.product.id}
+            initialQuantity={quantity}
+            setQuantity={setQuantity}
+            cartView={false}
+          />
           <button
             type='button'
             className={styles.addButton}

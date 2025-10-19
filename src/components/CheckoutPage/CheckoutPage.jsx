@@ -1,17 +1,8 @@
 import { useOutletContext } from 'react-router-dom';
+import QuantityField from '../QuantityField/QuantityField';
 
 function CheckoutPage() {
   const { cart, setCart } = useOutletContext();
-
-  const handleQuantityChange = (event, id) => {
-    setCart((previousCart) =>
-      previousCart.map((product) =>
-        product.info.id === id
-          ? { ...product, quantity: event.target.value }
-          : product
-      )
-    );
-  };
 
   return (
     <div className='checkout'>
@@ -21,13 +12,11 @@ function CheckoutPage() {
           {cart.map((product) => (
             <div key={product.info.id}>
               <h1>{product.info.title}</h1>
-              {/* TODO: Create component for the quantity input */}
-              <input
-                type='number'
-                value={product.quantity}
-                onChange={(event) =>
-                  handleQuantityChange(event, product.info.id)
-                }
+              <QuantityField
+                initialQuantity={product.quantity}
+                setCart={setCart}
+                productId={product.info.id}
+                cartView={true}
               />
               <span>
                 {Number(product.quantity * product.info.price).toFixed(2)}

@@ -5,8 +5,8 @@ import './App.css';
 function App() {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (info) => {
-    setCart([...cart, { info, quantity: 1 }]);
+  const addToCart = (info, quantity) => {
+    setCart([...cart, { info, quantity }]);
   };
 
   return (
