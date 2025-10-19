@@ -1,5 +1,5 @@
 import { useOutletContext } from 'react-router-dom';
-import QuantityField from '../QuantityField/QuantityField';
+import CartItemQuantity from '../CartItemQuantity/CartItemQuantity';
 
 function CheckoutPage() {
   const { cart, setCart } = useOutletContext();
@@ -12,11 +12,10 @@ function CheckoutPage() {
           {cart.map((product) => (
             <div key={product.info.id}>
               <h1>{product.info.title}</h1>
-              <QuantityField
+              <CartItemQuantity
                 initialQuantity={product.quantity}
                 setCart={setCart}
                 productId={product.info.id}
-                cartView={true}
               />
               <span>
                 {Number(product.quantity * product.info.price).toFixed(2)}

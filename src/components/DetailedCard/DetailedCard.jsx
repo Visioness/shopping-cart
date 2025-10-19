@@ -1,5 +1,5 @@
 import styles from './DetailedCard.module.css';
-import QuantityField from '../QuantityField/QuantityField';
+import QuantitySelector from '../QuantitySelector/QuantitySelector';
 import { useState } from 'react';
 
 function DetailedCard(props) {
@@ -39,12 +39,7 @@ function DetailedCard(props) {
           <span className={styles.price}>{props.product.price}</span>
         </div>
         <div className={styles.actions}>
-          <QuantityField
-            productId={props.product.id}
-            initialQuantity={quantity}
-            setQuantity={setQuantity}
-            cartView={false}
-          />
+          <QuantitySelector value={quantity} onChange={setQuantity} />
           <button
             type='button'
             className={styles.addButton}

@@ -1,0 +1,39 @@
+import styles from './QuantitySelector.module.css';
+
+function QuantitySelector({ value, onChange, min = 1, max = 99 }) {
+  const handleIncrement = () => {
+    if (value < max) {
+      onChange(value + 1);
+    }
+  };
+
+  const handleDecrement = () => {
+    if (value > min) {
+      onChange(value - 1);
+    }
+  };
+
+  return (
+    <div className={styles.quantitySelector}>
+      <button
+        type='button'
+        onClick={handleDecrement}
+        disabled={value <= min}
+        aria-label='Decrease quantity'>
+        -
+      </button>
+      <span className={styles.value} aria-live='polite'>
+        {value}
+      </span>
+      <button
+        type='button'
+        onClick={handleIncrement}
+        disabled={value >= max}
+        aria-label='Increase quantity'>
+        +
+      </button>
+    </div>
+  );
+}
+
+export default QuantitySelector;
