@@ -55,6 +55,7 @@ function App() {
       {(location.pathname !== '/' || cart.length > 0) && (
         <button type='button' onClick={handleModal}>
           <ShoppingCart size={32} color='black' strokeWidth={2} />
+          {cart.length > 0 && <span>{cart.length}</span>}
         </button>
       )}
       <main>

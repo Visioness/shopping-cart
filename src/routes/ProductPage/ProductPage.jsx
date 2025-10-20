@@ -32,7 +32,10 @@ function ProductPage() {
 
   return (
     <div className={styles.dialog}>
-      <button type='button' onClick={handleBackToShop}>
+      <button
+        className={styles.backButton}
+        type='button'
+        onClick={handleBackToShop}>
         <ArrowLeft size={48} color='black' strokeWidth={2} />
       </button>
       <div className='product-detailed'>

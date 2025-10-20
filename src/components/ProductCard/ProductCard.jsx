@@ -4,9 +4,19 @@ import styles from './ProductCard.module.css';
 
 export function AddToCart() {
   return (
-    <div>
-      <ShoppingCart size={24} color='black' strokeWidth={2} />
-      <CirclePlus size={16} color='black' strokeWidth={2} />
+    <div className={styles.addButtonInner}>
+      <ShoppingCart
+        className={styles.shoppingCartIcon}
+        size={28}
+        color='black'
+        strokeWidth={2}
+      />
+      <CirclePlus
+        className={styles.circlePlusIcon}
+        size={18}
+        color='black'
+        strokeWidth={3}
+      />
     </div>
   );
 }

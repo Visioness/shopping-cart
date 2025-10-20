@@ -1,0 +1,64 @@
+/* ===== Home Page ===== */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.home::before {
+  content: '🛍️';
+  font-size: 6rem;
+  margin-bottom: var(--spacing-lg);
+  animation: float 3s ease-in-out infinite;
+}
+
+.home::after {
+  content: 'Welcome to Shodin - Your Modern Shopping Experience';
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.3;
+}
+
+/* ===== Floating Animation ===== */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .home::before {
+    font-size: 4rem;
+  }
+
+  .home::after {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    min-height: 50vh;
+    padding: var(--spacing-lg);
+  }
+
+  .home::before {
+    font-size: 3rem;
+  }
+
+  .home::after {
+    font-size: 1.25rem;
+  }
+}

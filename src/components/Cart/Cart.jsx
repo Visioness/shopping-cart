@@ -1,5 +1,7 @@
-import { CreditCard, Trash2 } from 'lucide-react';
+import { CreditCard, Handbag, Trash2 } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 import CartItemQuantity from '../QuantityField/CartItemQuantity/CartItemQuantity';
+import styles from './Cart.module.css';
 
 function Cart({ cart, checkoutRef, onQuantityChange, onRemove }) {
   const handleBackdropClick = (event) => {
@@ -40,13 +42,12 @@ function Cart({ cart, checkoutRef, onQuantityChange, onRemove }) {
 
   return (
     <dialog
-      className='checkout'
+      className={styles.checkout}
       ref={checkoutRef}
       onClick={handleBackdropClick}
       onKeyDown={handleKeyDown}>
-      Here are the items that you are going to buy...
-      {cart.length > 0 && (
-        <div className='cart'>
+      {cart.length > 0 ? (
+        <div className={styles.cart}>
           {cartItems}
           <p>
             Total: <span>{totalPrice}</span>
@@ -56,6 +57,10 @@ function Cart({ cart, checkoutRef, onQuantityChange, onRemove }) {
             Continue...
           </button>
         </div>
+      ) : (
+        <>
+          <p>You have no items in your cart.</p>
+        </>
       )}
     </dialog>
   );
