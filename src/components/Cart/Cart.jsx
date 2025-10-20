@@ -1,8 +1,17 @@
-import { useOutletContext } from 'react-router-dom';
-import CartItemQuantity from '../CartItemQuantity/CartItemQuantity';
+import CartItemQuantity from '../QuantityField/CartItemQuantity/CartItemQuantity';
 
-function CheckoutPage() {
-  const { cart, setCart } = useOutletContext();
+function Cart({ cart, checkoutRef, onQuantityChange, onRemove }) {
+  const handleBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      checkoutRef.current.close();
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      checkoutRef.current.close();
+    }
+  };
 
   const totalPrice = cart
     .reduce(
@@ -16,16 +25,21 @@ function CheckoutPage() {
     <div key={product.info.id}>
       <h1>{product.info.title}</h1>
       <CartItemQuantity
-        initialQuantity={product.quantity}
-        setCart={setCart}
         productId={product.info.id}
+        initialQuantity={product.quantity}
+        onQuantityChange={onQuantityChange}
+        onRemove={onRemove}
       />
       <span>{Number(product.quantity * product.info.price).toFixed(2)}</span>
     </div>
   ));
 
   return (
-    <div className='checkout'>
+    <dialog
+      className='checkout'
+      ref={checkoutRef}
+      onClick={handleBackdropClick}
+      onKeyDown={handleKeyDown}>
       Here are the items that you are going to buy...
       {cart.length > 0 && (
         <div className='cart'>
@@ -34,8 +48,8 @@ function CheckoutPage() {
           <button type='button'>Pay with...</button>
         </div>
       )}
-    </div>
+    </dialog>
   );
 }
 
-export default CheckoutPage;
+export default Cart;

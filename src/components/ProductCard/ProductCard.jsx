@@ -1,11 +1,14 @@
-import styles from './MinimalCard.module.css';
+import { useNavigate } from 'react-router-dom';
+import styles from './ProductCard.module.css';
 
-function MinimalCard(props) {
+function ProductCard(props) {
+  const navigate = useNavigate();
+
   const handleCardClick = (event) => {
     if (
       !(event.target.tagName === 'INPUT' || event.target.tagName === 'BUTTON')
     ) {
-      props.setDetailedView(props.product);
+      navigate(`/product/${props.product.id}`);
     }
   };
 
@@ -36,4 +39,4 @@ function MinimalCard(props) {
   );
 }
 
-export default MinimalCard;
+export default ProductCard;

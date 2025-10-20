@@ -3,10 +3,12 @@ import App from './App.jsx';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import HomePage from './components/HomePage/HomePage';
-import ShopPage from './components/ShopPage/ShopPage';
-import CheckoutPage from './components/CheckoutPage/CheckoutPage';
-import ErrorPage from './components/ErrorPage/ErrorPage';
+import HomePage from './routes/HomePage/HomePage';
+import ErrorPage from './routes/ErrorPage/ErrorPage';
+import ShopPage, { loader as shopLoader } from './routes/ShopPage/ShopPage';
+import ProductPage, {
+  loader as productLoader,
+} from './routes/ProductPage/ProductPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,10 +26,12 @@ const router = createBrowserRouter([
           {
             path: 'shop',
             element: <ShopPage />,
+            loader: shopLoader,
           },
           {
-            path: 'checkout',
-            element: <CheckoutPage />,
+            path: 'product/:id',
+            element: <ProductPage />,
+            loader: productLoader,
           },
         ],
       },

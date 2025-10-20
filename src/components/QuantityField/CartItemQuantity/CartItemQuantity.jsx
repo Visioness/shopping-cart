@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import styles from './CartItemQuantity.module.css';
 
-function CartItemQuantity({ productId, initialQuantity, setCart }) {
+function CartItemQuantity({
+  productId,
+  initialQuantity,
+  onQuantityChange,
+  onRemove,
+}) {
   const [quantity, setQuantity] = useState(initialQuantity);
 
   // Sync quantity changes back to the cart state
   useEffect(() => {
-    setCart((previousCart) =>
-      previousCart.map((product) =>
-        product.info.id === productId ? { ...product, quantity } : product
-      )
-    );
-  }, [quantity, productId, setCart]);
+    onQuantityChange(productId, quantity);
+  }, [quantity, productId]);
 
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
@@ -22,9 +23,7 @@ function CartItemQuantity({ productId, initialQuantity, setCart }) {
   };
 
   const handleRemoveFromCart = () => {
-    setCart((previousCart) =>
-      previousCart.filter((product) => product.info.id !== productId)
-    );
+    onRemove(productId);
   };
 
   const isLastItem = quantity === 1;
