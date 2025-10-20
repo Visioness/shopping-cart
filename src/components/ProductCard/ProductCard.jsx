@@ -1,13 +1,21 @@
+import { ShoppingCart, CirclePlus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
+
+export function AddToCart() {
+  return (
+    <div>
+      <ShoppingCart size={24} color='black' strokeWidth={2} />
+      <CirclePlus size={16} color='black' strokeWidth={2} />
+    </div>
+  );
+}
 
 function ProductCard(props) {
   const navigate = useNavigate();
 
   const handleCardClick = (event) => {
-    if (
-      !(event.target.tagName === 'INPUT' || event.target.tagName === 'BUTTON')
-    ) {
+    if (!event.target.closest('button')) {
       navigate(`/product/${props.product.id}`);
     }
   };
@@ -32,7 +40,7 @@ function ProductCard(props) {
           disabled={props.cart.find(
             (product) => product.info.id === props.product.id
           )}>
-          Add to the cart
+          <AddToCart />
         </button>
       </div>
     </div>

@@ -1,11 +1,13 @@
+import { House, Handbag, ShoppingCart } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import './App.css';
 
 function App() {
   const [cart, setCart] = useState([]);
   const checkoutRef = useRef(null);
+  const location = useLocation();
 
   const addToCart = (info, quantity) => {
     setCart([...cart, { info, quantity }]);
@@ -30,21 +32,31 @@ function App() {
   return (
     <div className='app'>
       <header>
-        <h1 className='title'>Shodin</h1>
+        <NavLink to='/'>
+          <h1 className='title'>Shodin</h1>
+        </NavLink>
         <nav className='navigation'>
           <ul>
             <li>
-              <NavLink to='/'>Home</NavLink>
+              <NavLink to='/'>
+                <span>Home</span>
+                <House size={32} color='black' strokeWidth={2} />
+              </NavLink>
             </li>
             <li>
-              <NavLink to='shop'>Shop</NavLink>
+              <NavLink to='shop'>
+                <span>Shop</span>
+                <Handbag size={32} color='black' strokeWidth={2} />
+              </NavLink>
             </li>
           </ul>
         </nav>
       </header>
-      <button type='button' onClick={handleModal}>
-        CheckOut, {cart.length} items!
-      </button>
+      {(location.pathname !== '/' || cart.length > 0) && (
+        <button type='button' onClick={handleModal}>
+          <ShoppingCart size={32} color='black' strokeWidth={2} />
+        </button>
+      )}
       <main>
         <Outlet context={{ cart, addToCart, removeFromCart }} />
         <Cart

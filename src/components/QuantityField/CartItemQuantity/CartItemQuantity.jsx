@@ -1,3 +1,4 @@
+import { DiamondMinus, DiamondPlus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import styles from './CartItemQuantity.module.css';
 
@@ -35,7 +36,7 @@ function CartItemQuantity({
         onClick={isLastItem ? handleRemoveFromCart : handleDecrement}
         className={isLastItem ? styles.deleteButton : styles.decrementButton}
         aria-label={isLastItem ? 'Remove from cart' : 'Decrease quantity'}>
-        {isLastItem ? 'Delete' : '-'}
+        <DiamondMinus size={24} color='black' strokeWidth={2} />
       </button>
       <span className={styles.value} aria-live='polite'>
         {quantity}
@@ -45,7 +46,7 @@ function CartItemQuantity({
         onClick={handleIncrement}
         className={styles.incrementButton}
         aria-label='Increase quantity'>
-        +
+        <DiamondPlus size={24} color='black' strokeWidth={2} />
       </button>
     </div>
   );

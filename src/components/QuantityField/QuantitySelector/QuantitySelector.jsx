@@ -1,3 +1,4 @@
+import { DiamondMinus, DiamondPlus } from 'lucide-react';
 import styles from './QuantitySelector.module.css';
 
 function QuantitySelector({ value, onChange, min = 1, max = 99 }) {
@@ -20,7 +21,7 @@ function QuantitySelector({ value, onChange, min = 1, max = 99 }) {
         onClick={handleDecrement}
         disabled={value <= min}
         aria-label='Decrease quantity'>
-        -
+        <DiamondMinus size={24} color='black' strokeWidth={2} />
       </button>
       <span className={styles.value} aria-live='polite'>
         {value}
@@ -30,7 +31,7 @@ function QuantitySelector({ value, onChange, min = 1, max = 99 }) {
         onClick={handleIncrement}
         disabled={value >= max}
         aria-label='Increase quantity'>
-        +
+        <DiamondPlus size={24} color='black' strokeWidth={2} />
       </button>
     </div>
   );

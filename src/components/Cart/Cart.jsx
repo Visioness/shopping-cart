@@ -1,3 +1,4 @@
+import { CreditCard, Trash2 } from 'lucide-react';
 import CartItemQuantity from '../QuantityField/CartItemQuantity/CartItemQuantity';
 
 function Cart({ cart, checkoutRef, onQuantityChange, onRemove }) {
@@ -31,6 +32,9 @@ function Cart({ cart, checkoutRef, onQuantityChange, onRemove }) {
         onRemove={onRemove}
       />
       <span>{Number(product.quantity * product.info.price).toFixed(2)}</span>
+      <button type='button' onClick={() => onRemove(product.info.id)}>
+        <Trash2 size={24} color='crimson' strokeWidth={2} />
+      </button>
     </div>
   ));
 
@@ -44,8 +48,13 @@ function Cart({ cart, checkoutRef, onQuantityChange, onRemove }) {
       {cart.length > 0 && (
         <div className='cart'>
           {cartItems}
-          <span>Total: ${totalPrice}</span>
-          <button type='button'>Pay with...</button>
+          <p>
+            Total: <span>{totalPrice}</span>
+          </p>
+          <button type='button'>
+            <CreditCard size={32} color='black' strokeWidth={2} />
+            Continue...
+          </button>
         </div>
       )}
     </dialog>

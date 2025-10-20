@@ -1,7 +1,9 @@
-import styles from './ProductPage.module.css';
+import { ArrowLeft } from 'lucide-react';
 import QuantitySelector from '../../components/QuantityField/QuantitySelector/QuantitySelector';
+import { AddToCart } from '../../components/ProductCard/ProductCard';
 import { useLoaderData, useNavigate, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
+import styles from './ProductPage.module.css';
 
 export async function loader({ params }) {
   const response = await fetch(
@@ -31,7 +33,7 @@ function ProductPage() {
   return (
     <div className={styles.dialog}>
       <button type='button' onClick={handleBackToShop}>
-        Back to Shop
+        <ArrowLeft size={48} color='black' strokeWidth={2} />
       </button>
       <div className='product-detailed'>
         <div className={styles.information}>
@@ -53,7 +55,7 @@ function ProductPage() {
             className={styles.addButton}
             onClick={handleAddToCart}
             disabled={alreadyInCart}>
-            Add to the cart
+            <AddToCart />
           </button>
         </div>
       </div>
