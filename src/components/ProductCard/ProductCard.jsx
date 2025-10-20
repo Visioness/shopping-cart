@@ -1,5 +1,7 @@
 import { ShoppingCart, CirclePlus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { productPropType, cartItemPropType } from '../../types/propTypes';
 import styles from './ProductCard.module.css';
 
 export function AddToCart() {
@@ -58,3 +60,9 @@ function ProductCard(props) {
 }
 
 export default ProductCard;
+
+ProductCard.propTypes = {
+  product: productPropType.isRequired,
+  cart: PropTypes.arrayOf(cartItemPropType).isRequired,
+  addToCart: PropTypes.func.isRequired,
+};

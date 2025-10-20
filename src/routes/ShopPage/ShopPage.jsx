@@ -1,13 +1,10 @@
 import { useLoaderData, useOutletContext } from 'react-router-dom';
+import { fetchJson } from '../../utils/fetchJson';
 import styles from './ShopPage.module.css';
 import ProductCard from '../../components/ProductCard/ProductCard';
 
 export async function loader() {
-  const response = await fetch('https://fakestoreapi.com/products');
-  if (!response.ok) {
-    throw new Error('Fetch Error!');
-  }
-  return response.json();
+  return fetchJson('https://fakestoreapi.com/products');
 }
 
 function ShopPage() {
@@ -17,6 +14,7 @@ function ShopPage() {
   return (
     <div className='shop'>
       <div className={styles.products}>
+        {products.length === 0 && <p>No products available.</p>}
         {products.map((product) => (
           <ProductCard
             key={product.id}

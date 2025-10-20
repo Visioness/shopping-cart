@@ -1,6 +1,7 @@
 import { DiamondMinus, DiamondPlus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import styles from './CartItemQuantity.module.css';
+import PropTypes from 'prop-types';
 
 function CartItemQuantity({
   productId,
@@ -53,3 +54,10 @@ function CartItemQuantity({
 }
 
 export default CartItemQuantity;
+
+CartItemQuantity.propTypes = {
+  productId: PropTypes.number.isRequired,
+  initialQuantity: PropTypes.number.isRequired,
+  onQuantityChange: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
+};

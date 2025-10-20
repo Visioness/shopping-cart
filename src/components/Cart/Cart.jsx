@@ -1,5 +1,7 @@
 import { CreditCard, Handbag, Trash2 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { cartItemPropType } from '../../types/propTypes';
 import CartItemQuantity from '../QuantityField/CartItemQuantity/CartItemQuantity';
 import styles from './Cart.module.css';
 
@@ -67,3 +69,10 @@ function Cart({ cart, checkoutRef, onQuantityChange, onRemove }) {
 }
 
 export default Cart;
+
+Cart.propTypes = {
+  cart: PropTypes.arrayOf(cartItemPropType).isRequired,
+  checkoutRef: PropTypes.shape({ current: PropTypes.any }),
+  onQuantityChange: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
+};

@@ -1,5 +1,6 @@
 import { DiamondMinus, DiamondPlus } from 'lucide-react';
 import styles from './QuantitySelector.module.css';
+import PropTypes from 'prop-types';
 
 function QuantitySelector({ value, onChange, min = 1, max = 99 }) {
   const handleIncrement = () => {
@@ -38,3 +39,10 @@ function QuantitySelector({ value, onChange, min = 1, max = 99 }) {
 }
 
 export default QuantitySelector;
+
+QuantitySelector.propTypes = {
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  min: PropTypes.number,
+  max: PropTypes.number,
+};

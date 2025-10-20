@@ -4,15 +4,10 @@ import { AddToCart } from '../../components/ProductCard/ProductCard';
 import { useLoaderData, useNavigate, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import styles from './ProductPage.module.css';
+import { fetchJson } from '../../utils/fetchJson';
 
 export async function loader({ params }) {
-  const response = await fetch(
-    `https://fakestoreapi.com/products/${params.id}`
-  );
-  if (!response.ok) {
-    throw new Error('Product not found');
-  }
-  return response.json();
+  return fetchJson(`https://fakestoreapi.com/products/${params.id}`);
 }
 
 function ProductPage() {
